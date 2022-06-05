@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCustomerAction, removeCustomerAction } from '../../store/customerReducer';
 import { addCashAction, removeCashAction } from '../../store/cashReducer';
 import { fetchCustomers } from '../../asyncActions/customers';
+// import { addNoteAction } from '../../store/noteReducer';
 import Editor from '../Editor/Editor';
 
 function App() {
@@ -26,15 +27,20 @@ function App() {
   const removeClient = (customer) => {
     dispatch(removeCustomerAction(customer.id));
   };
+  // const addNote = (note) => {
+  //   dispatch(addNoteAction(note))
+  // }
   return (
     <div className="App">
       <Editor />
-      <div style={{ fontSize: '50px' }}>{cash}</div>
+      <div style={{ fontSize: '50px', marginTop: '20px' }}>{cash}</div>
       <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
         <button onClick={() => addCash()}>Пополнить</button>
         <button onClick={() => removeCash()}>Снять</button>
         <button onClick={() => addClient(prompt())}>Добавить клиента</button>
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
+        {/* <button onClick={() => addNote()}>Add Note</button> */}
+
         {/* <button onClick={()=>removeClient()}>Удалить клиента</button> */}
       </div>
       {customers.length > 0 ?
