@@ -5,7 +5,7 @@ const defaultState = {
             title: "Note title",
             text: "some text"
         },
-        { id: 2, title: "Hello2", text: "some other text" }
+        // { id: 2, title: "Hello2", text: "some other text" }
     ]
 }
 
@@ -15,8 +15,10 @@ const EDIT_NOTE = "EDIT_NOTE";
 
 // const ADD_MANY_CUSTOMERS = "ADD_MANY_CUSTOMERS";
 // const REMOVE_CUSTOMER = "REMOVE_CUSTOMER";
+let notesArr;
+localStorage.getItem("notes") ? notesArr = { "notes": JSON.parse(localStorage.getItem('notes')) } : notesArr = defaultState;
 
-export const noteReducer = (state = defaultState, action) => {
+export const noteReducer = (state = notesArr, action) => {
     switch (action.type) {
         case ADD_NOTE: return { ...state, notes: [...state.notes, action.payload] }
         //   case ADD_MANY_CUSTOMERS: return {...state, customers: [...state.customers, ...action.payload]}
