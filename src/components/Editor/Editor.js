@@ -8,6 +8,7 @@ function Editor() {
     const [value, setValue] = useState();
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes.notes);
+    console.log(notes);
 
     const addNote = (note) => {
         dispatch(addNoteAction(note));
