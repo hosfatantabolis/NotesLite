@@ -3,9 +3,15 @@ const defaultState = {
         {
             id: 1,
             title: "Note title",
-            text: "some text"
+            text: "some text",
+            color: "#FAD247"
         },
-        // { id: 2, title: "Hello2", text: "some other text" }
+        {
+            id: 2,
+            title: "Hello2",
+            text: "some other text",
+            color: "#E803FF"
+        }
     ]
 }
 
@@ -21,6 +27,15 @@ localStorage.getItem("notes") ? notesArr = { "notes": JSON.parse(localStorage.ge
 export const noteReducer = (state = notesArr, action) => {
     switch (action.type) {
         case ADD_NOTE: return { ...state, notes: [...state.notes, action.payload] }
+        case EDIT_NOTE:
+            return {
+                ...state,
+                notes: state.notes.map(
+                    (note) => note.id === action.payload.note.id ? { ...note, text: action.payload.text }
+                        : note
+                )
+            }
+
         //   case ADD_MANY_CUSTOMERS: return {...state, customers: [...state.customers, ...action.payload]}
         case DELETE_NOTE: return { ...state, notes: state.notes.filter(note => note.id !== action.payload) }
         default: return state;
@@ -30,3 +45,4 @@ export const noteReducer = (state = notesArr, action) => {
 export const addNoteAction = (payload) => ({ type: ADD_NOTE, payload });
 // export const addManyCustomersAction = (payload) => ({type: ADD_MANY_CUSTOMERS, payload});
 export const deleteNoteAction = (payload) => ({ type: DELETE_NOTE, payload });
+export const editNoteAction = (payload) => ({ type: EDIT_NOTE, payload });

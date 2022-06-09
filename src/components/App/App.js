@@ -4,6 +4,7 @@ import { addCustomerAction, removeCustomerAction } from '../../store/customerRed
 import { addCashAction, removeCashAction } from '../../store/cashReducer';
 import { fetchCustomers } from '../../asyncActions/customers';
 import { NotesList } from '../NotesList/NotesList';
+import { Search } from '../Search/Search';
 // import { addNoteAction } from '../../store/noteReducer';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <div onClick={() => removeClient(customer)} style={{ fontSize: "1.5rem", border: "1px solid" }} key={customer.id}>{customer.name}</div>)}
         </div> :
         <div style={{ fontSize: '50px' }}>Нету клиентов</div>} */}
+      <Search />
       <NotesList />
     </div>
   );
