@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNoteAction } from '../../store/noteReducer';
 import "./NotesList.css";
 
-export const NotesList = () => {
+export const NotesList = ({ handleNoteClick }) => {
     const newNote = {
         id: Date.now(),
         title: "New Note",
@@ -21,9 +21,9 @@ export const NotesList = () => {
 
             <div className="note__list">
                 {/* <button onClick={() => { console.log('1') }}>New note</button> */}
-                <button onClick={() => { addNote(newNote) }} note={newNote}> New Note </button>
+                <button className="note__list_new-note" onClick={() => { addNote(newNote) }} note={newNote}></button>
                 {notes.map(note => {
-                    return <Note note={note} key={note.id} />
+                    return <Note note={note} key={note.id} handleNoteClick={handleNoteClick} />
                 })}
             </div>
         </>

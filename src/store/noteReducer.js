@@ -10,7 +10,7 @@ const defaultState = {
             id: 2,
             title: "Hello2",
             text: "some other text",
-            color: "#E803FF"
+            color: "#A646F0"
         }
     ]
 }
@@ -18,6 +18,7 @@ const defaultState = {
 const ADD_NOTE = "ADD_NOTE";
 const DELETE_NOTE = "DELETE_NOTE";
 const EDIT_NOTE = "EDIT_NOTE";
+const EDIT_NOTE_COLOR = "EDIT_NOTE_COLOR";
 
 // const ADD_MANY_CUSTOMERS = "ADD_MANY_CUSTOMERS";
 // const REMOVE_CUSTOMER = "REMOVE_CUSTOMER";
@@ -31,7 +32,15 @@ export const noteReducer = (state = notesArr, action) => {
             return {
                 ...state,
                 notes: state.notes.map(
-                    (note) => note.id === action.payload.note.id ? { ...note, text: action.payload.text }
+                    (note) => note.id === action.payload.note.id ? action.payload.note
+                        : note
+                )
+            }
+        case EDIT_NOTE_COLOR:
+            return {
+                ...state,
+                notes: state.notes.map(
+                    (note) => note.id === action.payload.note.id ? { ...note, color: action.payload.color }
                         : note
                 )
             }
@@ -46,3 +55,4 @@ export const addNoteAction = (payload) => ({ type: ADD_NOTE, payload });
 // export const addManyCustomersAction = (payload) => ({type: ADD_MANY_CUSTOMERS, payload});
 export const deleteNoteAction = (payload) => ({ type: DELETE_NOTE, payload });
 export const editNoteAction = (payload) => ({ type: EDIT_NOTE, payload });
+export const editNoteColorAction = (payload) => ({ type: EDIT_NOTE_COLOR, payload });
