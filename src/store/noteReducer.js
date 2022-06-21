@@ -20,8 +20,6 @@ const DELETE_NOTE = "DELETE_NOTE";
 const EDIT_NOTE = "EDIT_NOTE";
 const EDIT_NOTE_COLOR = "EDIT_NOTE_COLOR";
 
-// const ADD_MANY_CUSTOMERS = "ADD_MANY_CUSTOMERS";
-// const REMOVE_CUSTOMER = "REMOVE_CUSTOMER";
 let notesArr;
 localStorage.getItem("notes") ? notesArr = { "notes": JSON.parse(localStorage.getItem('notes')) } : notesArr = defaultState;
 

@@ -4,4 +4,11 @@ const RED = "#D95134";
 const GREEN = "#44F13A";
 const BLUE = "#34A9D9";
 
-module.exports = { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE };
+const NEW_NOTE = {
+    id: 0,
+    title: "",
+    text: "",
+    color: "#FAD247"
+};
+
+module.exports = { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_NOTE };

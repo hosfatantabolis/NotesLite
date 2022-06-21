@@ -1,25 +1,31 @@
 import './App.css';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchCustomers } from '../../asyncActions/customers';
 import { NotesList } from '../NotesList/NotesList';
 import { Search } from '../Search/Search';
 import { NotePopup } from '../Popup/NotePopup';
 import React from 'react';
-// import { addNoteAction } from '../../store/noteReducer';
+import { NEW_NOTE } from '../../utils/constants'
 
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedNote, setSelectedNote] = React.useState();
+  const [popupAction, setPopupAction] = React.useState();
+
+  React.useEffect(() => {
+    setSelectedNote(NEW_NOTE);
+  }, [])
+
   function handleNoteClick(note) {
-    // setIsPopupOpen(true);
+    setPopupAction("");
     setSelectedNote(note);
     setIsOpen(true);
   }
-  // const dispatch = useDispatch();
-  // const customers = useSelector(state => state.customers.customers);
-  // const addNote = (note) => {
-  //   dispatch(addNoteAction(note))
-  // }
+
+  function handleNewNoteClick() {
+    setPopupAction("new")
+    setSelectedNote({ ...NEW_NOTE, id: Date.now() });
+    setIsOpen(true);
+  }
+
   return (
     <div className="App">
       {/*
@@ -27,8 +33,8 @@ function App() {
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
       </div> */}
       <Search />
-      <NotesList handleNoteClick={handleNoteClick} />
-      <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NotesList handleNoteClick={handleNoteClick} handleNewNoteClick={handleNewNoteClick} />
+      <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
     </div>
   );
 }
