@@ -8,7 +8,10 @@ const NEW_NOTE = {
     id: 0,
     title: "",
     text: "",
-    color: "#FAD247"
+    color: DEFAULT_COLOR
 };
 
-module.exports = { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_NOTE };
+const NEW_MODE = "new"; //переменная для создания новой заметки
+const EDIT_MODE = "edit"; //переменная для редактирования заметки
+
+module.exports = { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_NOTE, NEW_MODE, EDIT_MODE };

@@ -1,13 +1,14 @@
 import './NotePopup.css';
 import { useDispatch } from 'react-redux';
 import { deleteNoteAction, editNoteAction, addNoteAction } from '../../store/noteReducer';
-import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE } from "../../utils/constants";
+import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE } from "../../utils/constants";
 import { useEffect, useState } from 'react';
 export const NotePopup = ({ note, isOpen, setIsOpen, popupAction }) => {
     const [selectedNote, setSelectedNote] = useState("");
     useEffect(() => {
         setSelectedNote(note);
     }, [note, isOpen]);
+
     const dispatch = useDispatch();
 
     const editNote = (note) => {
@@ -51,12 +52,13 @@ export const NotePopup = ({ note, isOpen, setIsOpen, popupAction }) => {
 
     return (
         <div className={`note__editor_wrapper ${!isOpen ? "note__editor_wrapper_hidden" : ""}`}>
-
             <div className='note__editor_container'>
                 <button className='note__editor_close-btn' onClick={() => { closeNoteEditor() }}></button>
                 <form className='note__editor' onSubmit={(e) => {
-                    popupAction === "new" ? handleCreateNew(e, selectedNote) : handleSubmit(e, selectedNote)
+                    popupAction === NEW_MODE ? handleCreateNew(e, selectedNote) : handleSubmit(e, selectedNote)
                 }} action='submit' noValidate>
+                    {popupAction === NEW_MODE ? <h2>Новая заметка</h2> : <h2>Редактировать заметку</h2>}
+
                     <input placeholder='Название' className='note__input note__title_input-field' value={selectedNote ? selectedNote.title : ""} onChange={(e) => { handleNoteTitleChange(e) }}></input>
                     <textarea placeholder='Текст заметки' className='note__input note__text_input-field' value={selectedNote ? selectedNote.text : ""} onChange={(e) => { handleNoteTextChange(e) }}></textarea>
                     <div className='note__color-picker_container'>
