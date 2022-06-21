@@ -1,6 +1,16 @@
 .note{
     border-radius: 5px;
     max-height: 300px;
+    padding: 20px
+}
+
+.note__title{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.note__text{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
