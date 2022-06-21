@@ -26,13 +26,17 @@ function App() {
     setIsOpen(true);
   }
 
+  function handleSearch(e) {
+    console.log(e);
+  }
+
   return (
     <div className="App">
       {/*
       <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
       </div> */}
-      <Search />
+      <Search handleSearch={handleSearch} />
       <NotesList handleNoteClick={handleNoteClick} handleNewNoteClick={handleNewNoteClick} />
       <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
     </div>
