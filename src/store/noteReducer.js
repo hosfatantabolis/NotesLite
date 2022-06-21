@@ -2,14 +2,14 @@ const defaultState = {
     notes: [
         {
             id: 1,
-            title: "Note title",
-            text: "some text",
+            title: "Заголовок заметки",
+            text: "Чтобы отредактировать заметку, нажмите на неё",
             color: "#FAD247"
         },
         {
             id: 2,
-            title: "Hello2",
-            text: "some other text",
+            title: "Заголовок заметки 2",
+            text: "Еще больше текста",
             color: "#A646F0"
         }
     ],
@@ -47,17 +47,11 @@ export const noteReducer = (state = notesArr, action) => {
             }
         case SEARCH_NOTES:
             let newState = Object.assign({}, state);
-            console.log(newState);
-            console.log(state);
             const { text } = action.payload;
-            // console.log(text);
             const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text) || note.title.toLowerCase().includes(text) });
             if (text) {
                 newState.notes = filteredNotes;
             }
-            // else{
-            //     newState.notes = 
-            // }
             return { ...state, filteredNotes: newState.notes, searchQuery: text }
         //   case ADD_MANY_CUSTOMERS: return {...state, customers: [...state.customers, ...action.payload]}
         case DELETE_NOTE: return { ...state, notes: state.notes.filter(note => note.id !== action.payload) }

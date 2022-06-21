@@ -1,7 +1,10 @@
 .note{
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
     max-height: 300px;
-    padding: 20px
+    padding: 20px;
+    justify-content: center;
 }
 
 .note__title{
@@ -11,8 +14,10 @@
 }
 
 .note__text{
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 

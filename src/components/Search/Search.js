@@ -6,7 +6,6 @@ export const Search = ({ handleSearch }) => {
     const dispatch = useDispatch();
 
     const searchNote = (text) => {
-        console.log(text)
         dispatch(searchNoteAction({ text }));
     }
     return (
