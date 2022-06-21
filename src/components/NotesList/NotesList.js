@@ -7,7 +7,12 @@ export const NotesList = ({ handleNoteClick, handleNewNoteClick }) => {
     const notes = useSelector(state => state.notes.notes);
     const filteredNotes = useSelector(state => state.notes.filteredNotes);
     const searchQuery = useSelector(state => state.notes.searchQuery);
-
+    React.useEffect(() => {
+        localStorage.setItem(
+            'notes',
+            JSON.stringify(notes)
+        );
+    }, [notes]);
     return (
         <>
             <div className="note__list">

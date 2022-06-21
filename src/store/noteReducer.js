@@ -24,11 +24,13 @@ const EDIT_NOTE_COLOR = "EDIT_NOTE_COLOR";
 const SEARCH_NOTES = "SEARCH_NOTES";
 
 let notesArr;
-localStorage.getItem("notes") ? notesArr = { "notes": JSON.parse(localStorage.getItem('notes')) } : notesArr = defaultState;
+localStorage.getItem("notes") ? notesArr = { notes: JSON.parse(localStorage.getItem('notes')), filteredNotes: [], searchQuery: "" } : notesArr = defaultState;
 
 export const noteReducer = (state = notesArr, action) => {
     switch (action.type) {
-        case ADD_NOTE: return { ...state, notes: [...state.notes, action.payload] }
+        case ADD_NOTE: {
+            return { ...state, notes: [...state.notes, action.payload] }
+        }
         case EDIT_NOTE:
             return {
                 ...state,
