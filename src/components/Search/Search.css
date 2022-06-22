@@ -1,5 +1,5 @@
-.search__container{
-    width: 100%;
+.search{
+    /* width: 100%; */
     display: flex;
     max-width: 1140px;
     margin: auto;
@@ -10,13 +10,17 @@
     padding: 15px 0;
     width: 100%;
     border: 1px solid;
+    border-radius: 20px;
     background-color: transparent;
     outline: none;
     text-align: center;
     font-size: 28px;
     line-height: 1.21
 }
-.search__button{
+.search__input:focus{
+    border-color: #A646F0;
+}
+.search__img{
     background-image: url(../../images/buttons/search.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +28,6 @@
     background-color: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
     width: 50px;
     height: 50px;
 }

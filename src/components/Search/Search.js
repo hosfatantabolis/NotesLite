@@ -9,7 +9,8 @@ export const Search = () => {
         dispatch(searchNoteAction({ text }));
     }
     return (
-        <div className="search__container">
+        <div className="search">
+            <span className="search__img"></span>
             <input
                 className='search__input'
                 type="text"
@@ -17,7 +18,6 @@ export const Search = () => {
                 onChange={(e) =>
                     searchNote(e.target.value)
                 } />
-            <button className="search__button"></button>
         </div>
 
     );

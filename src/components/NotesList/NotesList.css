@@ -1,4 +1,6 @@
 .note__list{
+    max-width: 1140px;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, 364px);
     grid-row-gap: 30px;
@@ -41,5 +43,11 @@
     }
     100%{
         transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .note__list{
+        grid-template-columns: repeat(auto-fit, 310px);
     }
 }
