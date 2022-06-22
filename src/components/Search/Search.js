@@ -2,7 +2,7 @@ import './Search.css';
 import { searchNoteAction } from '../../store/noteReducer';
 import { useDispatch } from 'react-redux';
 
-export const Search = () => {
+export const Search = ({ handleNewNoteClick }) => {
     const dispatch = useDispatch();
 
     const searchNote = (text) => {
@@ -18,6 +18,7 @@ export const Search = () => {
                 onChange={(e) =>
                     searchNote(e.target.value)
                 } />
+            <button className="search__new-note-btn" onClick={() => { handleNewNoteClick() }}></button>
         </div>
 
     );

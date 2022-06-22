@@ -9,45 +9,15 @@
     padding: 20px;
 }
 
-.note__list_new-note{
-    background-image: url(../../images/buttons/add.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    transition: opacity 0.3s ease 0.1s;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-    animation: buttonRotate 5s linear  infinite;
-}
-
-.note__list_new-note:hover{
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-@keyframes buttonRotate{
-    0% {
-        transform: rotate(0);
-    }
-    50% {
-        transform: rotate(90deg);
-        background-color: #A646F0;
-    }
-    100%{
-        transform: rotate(180deg);
-    }
-}
-
 @media screen and (max-width: 380px) {
     .note__list{
         grid-template-columns: repeat(auto-fit, 310px);
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .note__list{
+        grid-template-columns: repeat(auto-fit, 250px);
     }
 }

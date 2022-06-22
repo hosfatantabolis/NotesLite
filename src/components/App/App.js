@@ -34,8 +34,8 @@ function App() {
       <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
       </div> */}
-      <Search />
-      <NotesList handleNoteClick={handleNoteClick} handleNewNoteClick={handleNewNoteClick} />
+      <Search handleNewNoteClick={handleNewNoteClick} />
+      <NotesList handleNoteClick={handleNoteClick} />
       <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
     </div>
   );
