@@ -2,7 +2,7 @@ import './Search.css';
 import { searchNoteAction } from '../../store/noteReducer';
 import { useDispatch } from 'react-redux';
 
-export const Search = ({ handleSearch }) => {
+export const Search = () => {
     const dispatch = useDispatch();
 
     const searchNote = (text) => {

@@ -4,13 +4,15 @@ const defaultState = {
             id: 1,
             title: "Заголовок заметки",
             text: "Чтобы отредактировать заметку, нажмите на неё",
-            color: "#FAD247"
+            color: "#FAD247",
+            dateCreated: ''
         },
         {
             id: 2,
             title: "Заголовок заметки 2",
             text: "Еще больше текста",
-            color: "#A646F0"
+            color: "#A646F0",
+            dateCreated: ''
         }
     ],
     filteredNotes: [],
@@ -29,7 +31,7 @@ localStorage.getItem("notes") ? notesArr = { notes: JSON.parse(localStorage.getI
 export const noteReducer = (state = notesArr, action) => {
     switch (action.type) {
         case ADD_NOTE: {
-            return { ...state, notes: [...state.notes, action.payload] }
+            return { ...state, notes: [action.payload, ...state.notes] }
         }
         case EDIT_NOTE:
             return {
@@ -50,7 +52,7 @@ export const noteReducer = (state = notesArr, action) => {
         case SEARCH_NOTES:
             let newState = Object.assign({}, state);
             const { text } = action.payload;
-            const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text) || note.title.toLowerCase().includes(text) });
+            const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text.toLowerCase()) || note.title.toLowerCase().includes(text) });
             if (text) {
                 newState.notes = filteredNotes;
             }

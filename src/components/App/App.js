@@ -21,13 +21,11 @@ function App() {
   }
 
   function handleNewNoteClick() {
+    const dateTime = new Date();
+    const dateNow = `${dateTime.getDate()}/${dateTime.getMonth() + 1}/${dateTime.getFullYear()} ${dateTime.getHours()}:${dateTime.getMinutes()}:${dateTime.getSeconds()}`;
     setPopupAction(NEW_MODE)
-    setSelectedNote({ ...NEW_NOTE, id: Date.now() });
+    setSelectedNote({ ...NEW_NOTE, id: Date.now(), dateCreated: dateNow });
     setIsOpen(true);
-  }
-
-  function handleSearch(e) {
-    console.log(e);
   }
 
   return (
@@ -36,7 +34,7 @@ function App() {
       <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
       </div> */}
-      <Search handleSearch={handleSearch} />
+      <Search />
       <NotesList handleNoteClick={handleNoteClick} handleNewNoteClick={handleNewNoteClick} />
       <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
     </div>
