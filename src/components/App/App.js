@@ -1,7 +1,7 @@
 import './App.css';
 import { NotesList } from '../NotesList/NotesList';
 import { Search } from '../Search/Search';
-import { NotePopup } from '../Popup/NotePopup';
+import { Popup } from '../Popup/Popup';
 import React from 'react';
 import { NEW_NOTE, NEW_MODE, EDIT_MODE } from '../../utils/constants'
 
@@ -36,7 +36,7 @@ function App() {
       </div> */}
       <Search handleNewNoteClick={handleNewNoteClick} />
       <NotesList handleNoteClick={handleNoteClick} />
-      <NotePopup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
+      <Popup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />
     </div>
   );
 }

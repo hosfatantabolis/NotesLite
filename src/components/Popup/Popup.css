@@ -1,0 +1,132 @@
+.popup{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+}
+
+.popup_hidden{
+    display: none;
+}
+
+.popup__container{
+    max-width: 70%;
+    margin: auto;
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px dotted #000000;
+    padding: 30px;
+}
+
+.popup__form{
+    margin: auto;
+    padding: 10px;
+}
+
+.popup__form_title{
+
+}
+
+.popup__input{
+    width: 100%;
+    margin: 9px 0;
+}
+
+.popup__input_text{
+    resize: none;
+    height: 30vh;
+}
+
+.popup__button{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.popup__button_close{
+    background-image: url(../../images/buttons/close.svg);
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 5px;
+    top: 5px;
+}
+
+.popup__button_delete{
+    background-image: url(../../images/buttons/delete.svg);
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.3s ease 0.1s;
+}
+
+.popup__button_delete:hover{
+    opacity: 0.6;
+}
+
+.popup__button_list{
+    background-image: url(../../images/buttons/tick_list.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.popup__button_save{
+    background-image: url(../../images/buttons/ok.svg);
+    width: 50px;
+    height: 50px;
+}
+
+.popup__color-picker_container{
+    display: flex;
+}
+.popup__color-picker{
+    margin: 10px auto ;
+    display: inline-flex;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid;
+    opacity: 50%;
+}
+.popup__color-picker_default{
+    background-color: #FAD247;
+}
+
+.popup__color-picker_purple{
+    background-color: #A646F0;
+}
+
+.popup__color-picker_red{
+    background-color: #D95134;
+}
+
+.popup__color-picker_green{
+    background-color: #44F13A;
+}
+
+.popup__color-picker_blue{
+    background-color: #34A9D9;
+}
+
+.popup__color-picker:hover{
+    cursor: pointer;
+    opacity: 85%;
+}
+
+.popup__color-picker_active{
+    opacity: 100%;
+}
+/* @media screen and (max-width: 380px) {
+    .note__editor_container{
+        max-height: 90vh;
+    }
+} */
+
