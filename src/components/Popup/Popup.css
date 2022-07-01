@@ -29,7 +29,8 @@
 }
 
 .popup__form_title{
-
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .popup__input{
@@ -124,9 +125,15 @@
 .popup__color-picker_active{
     opacity: 100%;
 }
-/* @media screen and (max-width: 380px) {
-    .note__editor_container{
-        max-height: 90vh;
-    }
-} */
 
+@media screen and (max-width: 460px) {
+    .popup__form_title{
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .popup__form_title{
+        font-size: 0.8em;
+    }
+}
