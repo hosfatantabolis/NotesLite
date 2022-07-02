@@ -5,6 +5,9 @@ import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE } from "../../utils/c
 import { useEffect, useState } from 'react';
 export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
     const [selectedNote, setSelectedNote] = useState("");
+    const [noteList, setNoteList] = useState(
+        ["Пункт 1", "Пункт 2"]
+    )
     useEffect(() => {
         setSelectedNote(note);
     }, [note, isOpen]);
@@ -20,6 +23,10 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setSelectedNote("");
         setIsOpen(false);
     };
+
+    const insertList = () => {
+        console.log("list")
+    }
 
     const handleNoteTitleChange = (e) => {
         setSelectedNote({ ...selectedNote, title: e.target.value });
@@ -72,11 +79,24 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
                         className='popup__input popup__input_text'
                         value={selectedNote ? selectedNote.text : ""}
                         onChange={(e) => { handleNoteTextChange(e) }}></textarea>
+                    <ul className='popup__list popup__list_hidden'>
+                        {noteList.map(item => {
+                            return <li>
+                                <input
+                                    checked={true}
+                                    type='checkbox'
+                                    value={item}
+                                    onChange={insertList} />
+                                <input type="text" value={item}></input>
+                            </li>
+                        })}
+                    </ul>
                     <div className='popup__color-picker_container'>
                         <button
                             className='popup__button popup__button_list'
                             type='button'
-                            title='Добавить список'></button>
+                            title='Добавить список'
+                            onClick={() => insertList()}></button>
                         <div className={`popup__color-picker popup__color-picker_default `} onClick={() => handleNoteColorChange(DEFAULT_COLOR)}></div> {/*${(note.color === DEFAULT_COLOR || selectedNote.color === DEFAULT_COLOR) ? "note__color-picker_active" : ""} */}
                         <div className={`popup__color-picker popup__color-picker_purple `} onClick={() => handleNoteColorChange(PURPLE)}></div>{/*${(note.color === PURPLE || selectedNote.color === PURPLE) ? "note__color-picker_active" : ""}*/}
                         <div className={`popup__color-picker popup__color-picker_red `} onClick={() => handleNoteColorChange(RED)}></div>{/*${(note.color === RED || selectedNote.color === RED) ? "note__color-picker_active" : ""}*/}
