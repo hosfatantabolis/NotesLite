@@ -8,7 +8,7 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
     const textInput = useRef();
 
     const handleAddItem = () => {
-        setSelectedNote({ ...selectedNote, list: [...selectedNote.list, value] });
+        setSelectedNote({ ...selectedNote, list: [...selectedNote.list, value], done: false });
         setValue({});
         textInput.current.value = '';
         console.log(selectedNote.list);
@@ -25,7 +25,11 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
 
     const handleCheck = (e, item) => {
         console.log(item);
-        setSelectedNote({ ...selectedNote, list: selectedNote.list.filter(listItem => listItem.id !== item.id) })
+        setSelectedNote({
+            ...selectedNote, list: selectedNote.list.map(listItem => {
+                return listItem.id === item.id ? { ...listItem, done: !listItem.done } : listItem
+            })
+        })
     }
     return (
         <div name="todo" className={`todo ${isVisible ? "" : "todo_hidden"}`}>
@@ -36,7 +40,7 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
 
                     // console.log(item)
                     return <li key={item.id}>
-                        <input type="checkbox" checked={item.done} onChange={(e) => { handleCheck(e, item) }}></input>
+                        <input type="checkbox" checked={item.done || false} onChange={(e) => { handleCheck(e, item) }} />
                         {item.text}
                         <button type="button" onClick={(e) => { handleDeleteItem(e, item) }}>Del</button>
                     </li>
