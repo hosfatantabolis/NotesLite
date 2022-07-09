@@ -21,6 +21,7 @@
     border-radius: 10px;
     border: 2px dotted #000000;
     padding: 30px;
+    overflow-y: scroll;
 }
 
 .popup__form{
@@ -44,8 +45,41 @@
 }
 
 /* .popup__list{
-    
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
+    text-align: left;
 } */
+
+.popup__list_hidden{
+    display: none;
+}
+
+.popup__list_item{
+    margin: 5px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.popup__list_item:first-child{
+    margin-top: 0;
+}
+
+.popup__list_input{
+    display: inline-block;
+    border: none;
+    margin: 0 0 0 10px;
+    min-width: 50px;
+    max-width: 80%;
+}
+
+.popup__list_input-done{
+    text-decoration: line-through;
+}
+
+.popup__list_input:focus{
+    outline: 1px solid #3ddc84;
+}
 
 .popup__button{
     background-repeat: no-repeat;

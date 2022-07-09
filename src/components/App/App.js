@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App App_dark">
       {/*
       <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
         <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>

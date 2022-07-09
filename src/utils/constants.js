@@ -8,7 +8,9 @@ const NEW_NOTE = {
     id: 0,
     title: "",
     text: "",
-    color: DEFAULT_COLOR
+    color: DEFAULT_COLOR,
+    type: "text",
+    list: []
 };
 
 const NEW_MODE = "new"; //переменная для создания новой заметки

@@ -3,14 +3,15 @@ import { useDispatch } from 'react-redux';
 import { deleteNoteAction, editNoteAction, addNoteAction } from '../../store/noteReducer';
 import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE } from "../../utils/constants";
 import { useEffect, useState } from 'react';
+import { ToDoList } from '../ToDoList/ToDoList';
 export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
     const [selectedNote, setSelectedNote] = useState("");
-    const [noteList, setNoteList] = useState(
-        ["Пункт 1", "Пункт 2"]
-    )
+    const [listVisible, setListVisible] = useState(false);
+
     useEffect(() => {
         setSelectedNote(note);
     }, [note, isOpen]);
+
 
     const dispatch = useDispatch();
 
@@ -24,8 +25,21 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setIsOpen(false);
     };
 
-    const insertList = () => {
-        console.log("list")
+    const toggleList = () => {
+        setListVisible(!listVisible);
+        if (selectedNote.type === "text" && listVisible === true) {
+            changeNoteType(selectedNote);
+        }
+        // changeNoteType(selectedNote);
+        console.log(selectedNote.type);
+
+        // listArray.push("a", "b");
+        // setNoteList(noteList => { noteList.push(listArray) });
+        // listArray.fill(false)
+
+        // console.log(listArray)
+        // console.log(noteList)
+
     }
 
     const handleNoteTitleChange = (e) => {
@@ -43,18 +57,22 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setSelectedNote("");
         setIsOpen(false);
     }
-    function handleSubmit(e, selectedNote) {
+    function handleSubmit(e, note) {
         e.preventDefault();
-        editNote(selectedNote);
+        editNote(note);
         setSelectedNote("");
         setIsOpen(false);
     }
 
-    function handleCreateNew(e, selectedNote) {
+    function handleCreateNew(e, note) {
         e.preventDefault();
-        dispatch(addNoteAction(selectedNote));
+        dispatch(addNoteAction(note));
         setSelectedNote("");
         setIsOpen(false);
+    }
+
+    function changeNoteType(note) {
+        note.type === "text" ? setSelectedNote({ ...note, type: "list" }) : setSelectedNote({ ...note, type: "text" });
     }
 
     return (
@@ -79,24 +97,30 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
                         className='popup__input popup__input_text'
                         value={selectedNote ? selectedNote.text : ""}
                         onChange={(e) => { handleNoteTextChange(e) }}></textarea>
-                    <ul className='popup__list popup__list_hidden'>
-                        {noteList.map(item => {
-                            return <li>
+                    {/* <ul className={`popup__list ${listVisible ? "" : "popup__list_hidden"}`}>
+                        {noteList.map((item, index) => {
+                            console.log(index);
+                            return <li className='popup__list_item' key={index}>
                                 <input
                                     checked={true}
                                     type='checkbox'
+                                    onChange={toggleList} />
+                                <span
+                                    contentEditable
+                                    className='popup__list_input'
+                                    type="textarea"
                                     value={item}
-                                    onChange={insertList} />
-                                <input type="text" value={item}></input>
+                                    placeholder="Пункт списка">{item}</span>
                             </li>
                         })}
-                    </ul>
+                    </ul> */}
+                    <ToDoList isVisible={listVisible} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
                     <div className='popup__color-picker_container'>
                         <button
                             className='popup__button popup__button_list'
                             type='button'
                             title='Добавить список'
-                            onClick={() => insertList()}></button>
+                            onClick={() => toggleList()}></button>
                         <div className={`popup__color-picker popup__color-picker_default `} onClick={() => handleNoteColorChange(DEFAULT_COLOR)}></div> {/*${(note.color === DEFAULT_COLOR || selectedNote.color === DEFAULT_COLOR) ? "note__color-picker_active" : ""} */}
                         <div className={`popup__color-picker popup__color-picker_purple `} onClick={() => handleNoteColorChange(PURPLE)}></div>{/*${(note.color === PURPLE || selectedNote.color === PURPLE) ? "note__color-picker_active" : ""}*/}
                         <div className={`popup__color-picker popup__color-picker_red `} onClick={() => handleNoteColorChange(RED)}></div>{/*${(note.color === RED || selectedNote.color === RED) ? "note__color-picker_active" : ""}*/}

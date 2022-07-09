@@ -5,14 +5,32 @@ const defaultState = {
             title: "Заголовок заметки",
             text: "Чтобы отредактировать заметку, нажмите на неё",
             color: "#FAD247",
-            dateCreated: ''
+            dateCreated: '',
+            type: "text",
+            list: [{
+                id: 1,
+                text: "text",
+                done: false
+            }]
         },
         {
             id: 2,
             title: "Заголовок заметки 2",
             text: "Еще больше текста",
             color: "#A646F0",
-            dateCreated: ''
+            dateCreated: '',
+            type: "text",
+            list: [{
+                id: 1,
+                text: "text1",
+                done: false
+            },
+            {
+                id: 2,
+                text: "text2",
+                done: true
+            },
+            ]
         }
     ],
     filteredNotes: [],
