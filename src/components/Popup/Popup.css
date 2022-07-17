@@ -44,6 +44,10 @@
     height: 30vh;
 }
 
+.popup__input_hidden{
+    display: none;
+}
+
 /* .popup__list{
     list-style: none;
     margin: 5px 0;

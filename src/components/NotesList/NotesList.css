@@ -1,4 +1,4 @@
-.note__list{
+.notes__list{
     max-width: 1140px;
     margin: auto;
     display: grid;
@@ -10,14 +10,14 @@
 }
 
 @media screen and (max-width: 380px) {
-    .note__list{
+    .notes__list{
         grid-template-columns: repeat(auto-fit, 310px);
     }
 }
 
 
 @media screen and (max-width: 320px) {
-    .note__list{
+    .notes__list{
         grid-template-columns: repeat(auto-fit, 250px);
     }
 }

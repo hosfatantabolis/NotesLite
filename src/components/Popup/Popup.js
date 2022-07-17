@@ -5,13 +5,18 @@ import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE } from "../../utils/c
 import { useEffect, useState } from 'react';
 import { ToDoList } from '../ToDoList/ToDoList';
 export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
+    // console.log(note);
     const [selectedNote, setSelectedNote] = useState("");
     const [listVisible, setListVisible] = useState(false);
-
     useEffect(() => {
         setSelectedNote(note);
     }, [note, isOpen]);
 
+    useEffect(() => {
+        if (selectedNote && selectedNote.type === 'list') {
+            setListVisible(true);
+        }
+    }, [selectedNote])
 
     const dispatch = useDispatch();
 
@@ -26,20 +31,8 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
     };
 
     const toggleList = () => {
+        changeNoteType(selectedNote);
         setListVisible(!listVisible);
-        if (selectedNote.type === "text" && listVisible === true) {
-            changeNoteType(selectedNote);
-        }
-        // changeNoteType(selectedNote);
-        console.log(selectedNote.type);
-
-        // listArray.push("a", "b");
-        // setNoteList(noteList => { noteList.push(listArray) });
-        // listArray.fill(false)
-
-        // console.log(listArray)
-        // console.log(noteList)
-
     }
 
     const handleNoteTitleChange = (e) => {
@@ -71,8 +64,23 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setIsOpen(false);
     }
 
+    function convertToList(text) {
+        let list = text.split("\n");
+        let obj = [];
+        list.forEach((item, index) => {
+            obj = [...obj, { id: index, text: item, done: false }]
+        })
+        console.log(obj);
+        setSelectedNote({ ...selectedNote, type: "list", list: obj });
+        // setSelectedNote({ ...selectedNote, color: color });
+
+    }
+
     function changeNoteType(note) {
         note.type === "text" ? setSelectedNote({ ...note, type: "list" }) : setSelectedNote({ ...note, type: "text" });
+        if (selectedNote.text && selectedNote.type === "text") {
+            convertToList(note.text);
+        }
     }
 
     return (
@@ -92,28 +100,12 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
                         className='popup__input popup__input_title'
                         value={selectedNote ? selectedNote.title : ""}
                         onChange={(e) => { handleNoteTitleChange(e) }}></input>
-                    <textarea
+                    {(selectedNote && selectedNote.type === 'text') && <textarea
                         placeholder='Текст заметки'
-                        className='popup__input popup__input_text'
+                        className={`popup__input popup__input_text ${(selectedNote && selectedNote.type === "list") ? "popup__input_hidden" : ""}`}
                         value={selectedNote ? selectedNote.text : ""}
-                        onChange={(e) => { handleNoteTextChange(e) }}></textarea>
-                    {/* <ul className={`popup__list ${listVisible ? "" : "popup__list_hidden"}`}>
-                        {noteList.map((item, index) => {
-                            console.log(index);
-                            return <li className='popup__list_item' key={index}>
-                                <input
-                                    checked={true}
-                                    type='checkbox'
-                                    onChange={toggleList} />
-                                <span
-                                    contentEditable
-                                    className='popup__list_input'
-                                    type="textarea"
-                                    value={item}
-                                    placeholder="Пункт списка">{item}</span>
-                            </li>
-                        })}
-                    </ul> */}
+                        onChange={(e) => { handleNoteTextChange(e) }}></textarea>}
+
                     <ToDoList isVisible={listVisible} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
                     <div className='popup__color-picker_container'>
                         <button

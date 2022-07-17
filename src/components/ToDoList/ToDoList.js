@@ -18,6 +18,16 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
         setValue({ ...value, id: Date.now(), text: e.target.value });
     }
 
+    const handleEdit = (e, item) => {
+        // setValue({ ...value, id: Date.now(), text: e.target.textContent });
+        // console.log(item)
+        setSelectedNote({
+            ...selectedNote, list: selectedNote.list.map(listItem => {
+                return listItem.id === item.id ? { ...listItem, text: e.target.textContent } : listItem
+            })
+        })
+    }
+
     const handleDeleteItem = (e, item) => {
         console.log(item);
         setSelectedNote({ ...selectedNote, list: selectedNote.list.filter(listItem => listItem.id !== item.id) })
@@ -39,9 +49,9 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
                 {(selectedNote && selectedNote.list.length > 0) && selectedNote.list.map((item, index) => {
 
                     // console.log(item)
-                    return <li key={item.id}>
+                    return <li className='todo__list_item' key={item.id}>
                         <input type="checkbox" checked={item.done || false} onChange={(e) => { handleCheck(e, item) }} />
-                        {item.text}
+                        <span className='todo__list_item_text' onBlur={(e) => handleEdit(e, item)} suppressContentEditableWarning={true} contentEditable>{item.text}</span>
                         <button type="button" onClick={(e) => { handleDeleteItem(e, item) }}>Del</button>
                     </li>
 

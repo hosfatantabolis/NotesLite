@@ -26,3 +26,17 @@
     cursor: pointer;
 }
 
+.note__list{
+    list-style: none;
+    margin: 5px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.note__list li:nth-child(n+6) {
+    display: none;
+}
+
+.note__list_item{
+    max-width: 100%;
+}
