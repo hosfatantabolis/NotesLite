@@ -30,11 +30,6 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setIsOpen(false);
     };
 
-    const toggleList = () => {
-        changeNoteType(selectedNote);
-        setListVisible(!listVisible);
-    }
-
     const handleNoteTitleChange = (e) => {
         setSelectedNote({ ...selectedNote, title: e.target.value });
     }
@@ -48,13 +43,15 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
 
     function closeNoteEditor() {
         setSelectedNote("");
+        setListVisible(false);
         setIsOpen(false);
     }
     function handleSubmit(e, note) {
         e.preventDefault();
         editNote(note);
-        setSelectedNote("");
-        setIsOpen(false);
+        // setSelectedNote("");
+        // setIsOpen(false);
+        closeNoteEditor();
     }
 
     function handleCreateNew(e, note) {
@@ -64,22 +61,46 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         setIsOpen(false);
     }
 
+    const toggleList = () => {
+        changeNoteType(selectedNote);
+        // setListVisible(!listVisible);
+    }
+
     function convertToList(text) {
         let list = text.split("\n");
         let obj = [];
         list.forEach((item, index) => {
             obj = [...obj, { id: index, text: item, done: false }]
         })
-        console.log(obj);
+        // console.log(obj);
+        setListVisible(true);
         setSelectedNote({ ...selectedNote, type: "list", list: obj });
         // setSelectedNote({ ...selectedNote, color: color });
 
     }
 
+    function convertToText(list) {
+        let text;
+        list.forEach((item, index) => {
+            if (index === 0) {
+                text = item.text
+            }
+            else {
+                text = text + '\n' + item.text
+            }
+        })
+        // console.log(text);
+        setListVisible(false);
+        setSelectedNote({ ...selectedNote, type: "text", list: [], text: text });
+    }
+
     function changeNoteType(note) {
-        note.type === "text" ? setSelectedNote({ ...note, type: "list" }) : setSelectedNote({ ...note, type: "text" });
+        // note.type === "text" ? setSelectedNote({ ...note, type: "list" }) : setSelectedNote({ ...note, type: "text" });
         if (selectedNote.text && selectedNote.type === "text") {
             convertToList(note.text);
+        }
+        if (selectedNote.list && selectedNote.type === "list") {
+            convertToText(note.list);
         }
     }
 

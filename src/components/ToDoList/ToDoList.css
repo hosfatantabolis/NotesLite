@@ -2,6 +2,29 @@
     display: none;
 }
 
+.todo__container{
+    display: flex;
+    justify-content: center;
+}
+
+.todo__input{
+    margin: 0 10px 0 0;
+    max-width: 70%;
+}
+
+.todo__button{
+    background-image: url(../../images/buttons/add.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
 .todo__list{
     list-style: none;
     margin: 5px 0;
@@ -11,10 +34,34 @@
 
 .todo__list_item{
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .todo__list_item_text{
-    width: 100%;
+    max-width: 80%;
     margin: 0 0 0 10px;
+}
+
+.todo__list_item_text-done{
+    text-decoration: line-through;
+}
+
+.todo__list_delete-button{
+    background-image: url(../../images/buttons/delete.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+@media screen and (max-width: 380px) {
+    .todo__list_item_text {
+        max-width: 70%;
+    }
 }

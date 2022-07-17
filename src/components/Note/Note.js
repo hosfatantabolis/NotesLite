@@ -8,7 +8,8 @@ export const Note = ({ note, handleNoteClick }) => {
             {/*note.type === "list" ? note.list :  */}
             {note.type === "list" ? <ul className='note__list'>
                 {note.list.map(item => {
-                    return <li className='note__list_item' key={item.id}>{item.text}</li>
+                    return <li className='note__list_item' key={item.id}>
+                        <input type="checkbox" readOnly checked={item.done} /><span className='note__list_item_text'>{item.text}</span></li>
                 })}
             </ul> : <p className="note__text">{note.text}</p>}
             <span className="note__date-created">{note.dateCreated}</span>

@@ -4,7 +4,8 @@
     border-radius: 5px;
     max-height: 300px;
     padding: 20px;
-    justify-content: center;
+    position: relative;
+    /* justify-content: center; */
 }
 
 .note__title{
@@ -30,7 +31,7 @@
     list-style: none;
     margin: 5px 0;
     padding: 0;
-    text-align: center;
+    text-align: left;
 }
 
 .note__list li:nth-child(n+6) {
@@ -38,5 +39,18 @@
 }
 
 .note__list_item{
+    display: flex;
     max-width: 100%;
+    overflow: hidden;
+}
+
+.note__list_item_text{
+    margin-left: 5px;
+}
+
+.note__date-created{
+    font-size: 0.7em;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }

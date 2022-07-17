@@ -129,6 +129,8 @@
 
 .popup__color-picker_container{
     display: flex;
+    border-top: #000000 1px solid;
+    padding-top: 10px;
 }
 .popup__color-picker{
     margin: 10px auto ;
@@ -169,6 +171,9 @@
 }
 
 @media screen and (max-width: 460px) {
+    /* .popup__container{
+         max-width: 80%;
+    } */
     .popup__form_title{
         font-size: 1.2em;
     }
@@ -178,4 +183,10 @@
     .popup__form_title{
         font-size: 0.8em;
     }
+}
+
+@media screen and (max-width: 320px) {
+    /*.popup__container{
+         padding: 0; 
+    }*/
 }
