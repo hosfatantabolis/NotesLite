@@ -3,11 +3,13 @@ import { combineReducers } from 'redux';
 // import { cashReducer } from './cashReducer';
 // import { customerReducer } from './customerReducer';
 import { noteReducer } from './noteReducer';
+import { modeReducer } from './modeReducer';
 
 const rootReducer = combineReducers({
     // cash: cashReducer,
     // customers: customerReducer,
     notes: noteReducer,
+    mode: modeReducer,
 });
 
 export const store = configureStore({ reducer: rootReducer });

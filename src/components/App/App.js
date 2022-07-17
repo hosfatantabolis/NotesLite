@@ -3,7 +3,8 @@ import { NotesList } from '../NotesList/NotesList';
 import { Search } from '../Search/Search';
 import { Popup } from '../Popup/Popup';
 import React from 'react';
-import { NEW_NOTE, NEW_MODE, EDIT_MODE } from '../../utils/constants'
+import { useSelector } from 'react-redux';
+import { NEW_NOTE, NEW_MODE, EDIT_MODE, MODE_DARK } from '../../utils/constants'
 
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -27,13 +28,10 @@ function App() {
     setSelectedNote({ ...NEW_NOTE, id: Date.now(), dateCreated: dateNow });
     setIsOpen(true);
   }
+  const mode = useSelector(state => state.mode.mode);
 
   return (
-    <div className="App App_dark">
-      {/*
-      <div style={{ maxWidth: "100%", display: 'flex', margin: "auto", justifyContent: "center" }}>
-        <button onClick={() => dispatch(fetchCustomers())}>Добавить клиентов из базы</button>
-      </div> */}
+    <div className={`App ${mode === MODE_DARK ? "App_dark" : ""}`}>
       <Search handleNewNoteClick={handleNewNoteClick} />
       <NotesList handleNoteClick={handleNoteClick} />
       <Popup note={selectedNote} isOpen={isOpen} setIsOpen={setIsOpen} popupAction={popupAction} />

@@ -1,6 +1,7 @@
 import './Search.css';
 import { searchNoteAction } from '../../store/noteReducer';
 import { useDispatch } from 'react-redux';
+import ModeCheckbox from '../ModeCheckbox/ModeCheckbox';
 
 export const Search = ({ handleNewNoteClick }) => {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export const Search = ({ handleNewNoteClick }) => {
     }
     return (
         <div className="search">
-            <span className="search__img"></span>
+            <ModeCheckbox />
             <input
                 className='search__input'
                 type="text"
