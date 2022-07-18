@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { editNoteAction } from '../../store/noteReducer';
-
+import { useSelector } from 'react-redux';
+import { THEME_DARK } from "../../utils/constants";
 import './ToDoList.css';
-export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
+
+export const ToDoList = ({ selectedNote, setSelectedNote }) => {
     const [value, setValue] = useState({});
     const [isDisabled, setIsDisabled] = useState(true);
+    const theme = useSelector(state => state.theme.theme);
+
     const textInput = useRef();
 
     const handleAddItem = () => {
@@ -47,8 +49,8 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
     return (
         <div name="todo" className={`todo ${(selectedNote && selectedNote.list.length > 0) ? "" : "todo_hidden"}`}>
             <div className='todo__container'>
-                <input className='todo__input' type="text" placeholder='Добавить элемент списка' ref={textInput} onChange={(e) => { handleChange(e) }}></input>
-                <button className='todo__button' type='button' onClick={handleAddItem} disabled={isDisabled} />
+                <input className={`todo__input ${theme === THEME_DARK ? "todo__input_theme-dark" : ""}`} type="text" placeholder='Добавить элемент списка' ref={textInput} onChange={(e) => { handleChange(e) }}></input>
+                <button className={`todo__button todo__button_add ${theme === THEME_DARK ? "todo__button_theme-dark" : ""}`} type='button' onClick={handleAddItem} disabled={isDisabled} />
             </div>
             <ul className="todo__list">
                 {(selectedNote && selectedNote.list.length > 0) && selectedNote.list.map((item) => {
@@ -57,7 +59,7 @@ export const ToDoList = ({ selectedNote, setSelectedNote, isVisible }) => {
                     return <li className='todo__list_item' key={item.id}>
                         <input type="checkbox" checked={item.done || false} onChange={(e) => { handleCheck(e, item) }} />
                         <span className={`todo__list_item_text ${item.done ? "todo__list_item_text-done" : ""}`} onBlur={(e) => handleEdit(e, item)} suppressContentEditableWarning={true} contentEditable>{item.text}</span>
-                        <button className='todo__list_delete-button' type="button" onClick={(e) => { handleDeleteItem(e, item) }}></button>
+                        <button className={`todo__button todo__button_delete ${theme === THEME_DARK ? "todo__button_theme-dark" : ""}`} type="button" onClick={(e) => { handleDeleteItem(e, item) }}></button>
                     </li>
 
                 })}

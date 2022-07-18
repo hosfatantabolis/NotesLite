@@ -12,8 +12,12 @@
     max-width: 70%;
 }
 
+.todo__input_theme-dark{
+    background-color: #0f1014;
+    color: #FFFFFF;
+}
+
 .todo__button{
-    background-image: url(../../images/buttons/add.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -23,6 +27,18 @@
     cursor: pointer;
     width: 30px;
     height: 30px;
+}
+
+.todo__button_theme-dark{
+    filter: invert(100%) brightness(114%) contrast(115%);
+}
+
+.todo__button_add{
+    background-image: url(../../images/buttons/add.svg);
+}
+
+.todo__button_delete{
+    background-image: url(../../images/buttons/delete.svg);
 }
 
 .todo__list{
@@ -45,19 +61,6 @@
 
 .todo__list_item_text-done{
     text-decoration: line-through;
-}
-
-.todo__list_delete-button{
-    background-image: url(../../images/buttons/delete.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
 }
 
 @media screen and (max-width: 380px) {

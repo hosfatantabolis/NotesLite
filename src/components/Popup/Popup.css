@@ -9,6 +9,10 @@
     height: 100vh;
 }
 
+.popup_theme-dark{
+    color: #FFFFFF;
+}
+
 .popup_hidden{
     display: none;
 }
@@ -22,6 +26,10 @@
     border: 2px dotted #000000;
     padding: 30px;
     overflow-y: scroll;
+}
+
+.popup__container_theme-dark{
+    background-color: #0f1014; 
 }
 
 .popup__form{
@@ -39,6 +47,11 @@
     margin: 9px 0;
 }
 
+.popup__input_theme-dark{
+    background-color: #0f1014;
+    color: #FFFFFF;
+}
+
 .popup__input_text{
     resize: none;
     height: 30vh;
@@ -47,13 +60,6 @@
 .popup__input_hidden{
     display: none;
 }
-
-/* .popup__list{
-    list-style: none;
-    margin: 5px 0;
-    padding: 0;
-    text-align: left;
-} */
 
 .popup__list_hidden{
     display: none;
@@ -93,6 +99,10 @@
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+.popup__button_theme-dark{
+    filter: invert(100%) brightness(114%) contrast(115%);
 }
 
 .popup__button_close{

@@ -22,6 +22,11 @@
 .search__input:focus{
     border-color: #A646F0;
 }
+
+.search__input_theme-dark{
+    color: #FFFFFF;
+}
+
 .search__img{
     background-image: url(../../images/buttons/search.svg);
     background-repeat: no-repeat;

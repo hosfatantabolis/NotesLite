@@ -52,7 +52,13 @@
     transform: translateX(18px);
   }
 
-  .mode-checkbox_img{
+  .mode-checkbox__img{
     width: 40px;
     height: 40px;
+    /* border-radius: 50%; */
+  }
+
+  .mode-checkbox__img_theme-dark{
+    /* background-color: #fff; */
+    filter: invert(100%) brightness(114%) contrast(115%);
   }

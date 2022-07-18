@@ -1,22 +1,16 @@
 import './Popup.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteNoteAction, editNoteAction, addNoteAction } from '../../store/noteReducer';
-import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE } from "../../utils/constants";
+import { DEFAULT_COLOR, PURPLE, RED, GREEN, BLUE, NEW_MODE, THEME_DARK } from "../../utils/constants";
 import { useEffect, useState } from 'react';
 import { ToDoList } from '../ToDoList/ToDoList';
 export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
-    // console.log(note);
+    const theme = useSelector(state => state.theme.theme);
     const [selectedNote, setSelectedNote] = useState("");
-    const [listVisible, setListVisible] = useState(false);
+
     useEffect(() => {
         setSelectedNote(note);
     }, [note, isOpen]);
-
-    useEffect(() => {
-        if (selectedNote && selectedNote.type === 'list') {
-            setListVisible(true);
-        }
-    }, [selectedNote])
 
     const dispatch = useDispatch();
 
@@ -43,14 +37,11 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
 
     function closeNoteEditor() {
         setSelectedNote("");
-        setListVisible(false);
         setIsOpen(false);
     }
     function handleSubmit(e, note) {
         e.preventDefault();
         editNote(note);
-        // setSelectedNote("");
-        // setIsOpen(false);
         closeNoteEditor();
     }
 
@@ -63,7 +54,6 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
 
     const toggleList = () => {
         changeNoteType(selectedNote);
-        // setListVisible(!listVisible);
     }
 
     function convertToList(text) {
@@ -72,11 +62,7 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
         list.forEach((item, index) => {
             obj = [...obj, { id: index, text: item, done: false }]
         })
-        // console.log(obj);
-        setListVisible(true);
         setSelectedNote({ ...selectedNote, type: "list", list: obj });
-        // setSelectedNote({ ...selectedNote, color: color });
-
     }
 
     function convertToText(list) {
@@ -89,13 +75,10 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
                 text = text + '\n' + item.text
             }
         })
-        // console.log(text);
-        setListVisible(false);
         setSelectedNote({ ...selectedNote, type: "text", list: [], text: text });
     }
 
     function changeNoteType(note) {
-        // note.type === "text" ? setSelectedNote({ ...note, type: "list" }) : setSelectedNote({ ...note, type: "text" });
         if (selectedNote.text && selectedNote.type === "text") {
             convertToList(note.text);
         }
@@ -105,10 +88,10 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
     }
 
     return (
-        <div className={`popup ${!isOpen ? "popup_hidden" : ""}`}>
-            <div className='popup__container'>
+        <div className={`popup ${!isOpen ? "popup_hidden" : ""} ${theme === THEME_DARK ? "popup_theme-dark" : ""}`}>
+            <div className={`popup__container ${theme === THEME_DARK ? "popup__container_theme-dark" : ""}`}>
                 <button
-                    className='popup__button popup__button_close'
+                    className={`popup__button popup__button_close ${theme === THEME_DARK ? "popup__button_theme-dark" : ""}`}
                     title='Закрыть'
                     onClick={() => { closeNoteEditor() }}></button>
                 <form className='popup__form' onSubmit={(e) => {
@@ -118,19 +101,19 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
 
                     <input
                         placeholder='Название'
-                        className='popup__input popup__input_title'
+                        className={`popup__input popup__input_title ${theme === THEME_DARK ? "popup__input_theme-dark" : ""}`}
                         value={selectedNote ? selectedNote.title : ""}
                         onChange={(e) => { handleNoteTitleChange(e) }}></input>
                     {(selectedNote && selectedNote.type === 'text') && <textarea
                         placeholder='Текст заметки'
-                        className={`popup__input popup__input_text ${(selectedNote && selectedNote.type === "list") ? "popup__input_hidden" : ""}`}
+                        className={`popup__input popup__input_text ${(selectedNote && selectedNote.type === "list") ? "popup__input_hidden" : ""} ${theme === THEME_DARK ? "popup__input_theme-dark" : ""}`}
                         value={selectedNote ? selectedNote.text : ""}
                         onChange={(e) => { handleNoteTextChange(e) }}></textarea>}
 
-                    <ToDoList isVisible={listVisible} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+                    <ToDoList selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
                     <div className='popup__color-picker_container'>
                         <button
-                            className='popup__button popup__button_list'
+                            className={`popup__button popup__button_list ${theme === THEME_DARK ? "popup__button_theme-dark" : ""}`}
                             type='button'
                             title='Добавить список'
                             onClick={() => toggleList()}></button>
@@ -140,13 +123,13 @@ export const Popup = ({ note, isOpen, setIsOpen, popupAction }) => {
                         <div className={`popup__color-picker popup__color-picker_green `} onClick={() => handleNoteColorChange(GREEN)}></div>{/*${(note.color === GREEN || selectedNote.color === GREEN) ? "note__color-picker_active" : ""}*/}
                         <div className={`popup__color-picker popup__color-picker_blue `} onClick={() => handleNoteColorChange(BLUE)}></div>{/*${(note.color === BLUE || selectedNote.color === BLUE) ? "note__color-picker_active" : ""}*/}
                         <button
-                            className="popup__button popup__button_delete"
+                            className={`popup__button popup__button_delete ${theme === THEME_DARK ? "popup__button_theme-dark" : ""}`}
                             type="button"
                             title='Удалить'
                             onClick={() => deleteNote(note)}></button>
                     </div>
                     <button
-                        className="popup__button popup__button_save"
+                        className={`popup__button popup__button_save ${theme === THEME_DARK ? "popup__button_theme-dark" : ""}`}
                         type='submit'
                         title='Сохранить'></button>
                 </form>

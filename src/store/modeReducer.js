@@ -1,16 +1,16 @@
-import { MODE_LIGHT } from "../utils/constants";
+import { THEME_LIGHT } from "../utils/constants";
 
 const defaultState = {
-    mode: MODE_LIGHT,
+    theme: THEME_LIGHT,
 }
 
-const SWITCH_MODE = "SWITCH_MODE";
+const SWITCH_THEME = "SWITCH_THEME";
 
-export const modeReducer = (state = defaultState, action) => {
+export const themeReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case SWITCH_MODE: return { ...state, mode: action.payload }
+        case SWITCH_THEME: return { ...state, theme: action.payload }
         default: return state;
     }
 };
 
-export const switchModeAction = (payload) => ({ type: SWITCH_MODE, payload });
+export const switchThemeAction = (payload) => ({ type: SWITCH_THEME, payload });
