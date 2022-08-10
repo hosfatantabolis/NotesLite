@@ -3,21 +3,20 @@ import { NotesList } from '../NotesList/NotesList';
 import { Search } from '../Search/Search';
 import { Popup } from '../Popup/Popup';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { NEW_NOTE, NEW_MODE, EDIT_MODE, THEME_DARK } from '../../utils/constants'
+import { useSelector, useDispatch } from 'react-redux';
+import { NEW_NOTE, NEW_MODE, EDIT_MODE, THEME_DARK } from '../../utils/constants';
+import { editSelectedNoteAction } from '../../store/noteReducer';
 
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedNote, setSelectedNote] = React.useState();
-  const [popupAction, setPopupAction] = React.useState();
+  const selectedNote = useSelector(state => state.notes.selectedNote);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    setSelectedNote(NEW_NOTE);
-  }, [])
+  const [popupAction, setPopupAction] = React.useState();
 
   function handleNoteClick(note) {
     setPopupAction(EDIT_MODE);
-    setSelectedNote(note);
+    dispatch(editSelectedNoteAction(note));
     setIsOpen(true);
   }
 
@@ -25,7 +24,7 @@ function App() {
     const dateTime = new Date();
     const dateNow = `${dateTime.getDate()}/${dateTime.getMonth() + 1}/${dateTime.getFullYear()} ${dateTime.getHours()}:${dateTime.getMinutes()}:${dateTime.getSeconds()}`;
     setPopupAction(NEW_MODE)
-    setSelectedNote({ ...NEW_NOTE, id: Date.now(), dateCreated: dateNow });
+    dispatch(editSelectedNoteAction({ ...NEW_NOTE, id: Date.now(), dateCreated: dateNow }));
     setIsOpen(true);
   }
   const theme = useSelector(state => state.theme.theme);

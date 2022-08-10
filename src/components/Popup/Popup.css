@@ -13,10 +13,6 @@
     color: #FFFFFF;
 }
 
-.popup_hidden{
-    display: none;
-}
-
 .popup__container{
     max-width: 70%;
     margin: auto;
@@ -181,9 +177,6 @@
 }
 
 @media screen and (max-width: 460px) {
-    /* .popup__container{
-         max-width: 80%;
-    } */
     .popup__form_title{
         font-size: 1.2em;
     }
@@ -193,10 +186,4 @@
     .popup__form_title{
         font-size: 0.8em;
     }
-}
-
-@media screen and (max-width: 320px) {
-    /*.popup__container{
-         padding: 0; 
-    }*/
 }

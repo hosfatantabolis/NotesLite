@@ -32,7 +32,8 @@ const defaultState = {
         }
     ],
     filteredNotes: [],
-    searchQuery: ""
+    searchQuery: "",
+    selectedNote: {}
 }
 
 const ADD_NOTE = "ADD_NOTE";
@@ -40,6 +41,7 @@ const DELETE_NOTE = "DELETE_NOTE";
 const EDIT_NOTE = "EDIT_NOTE";
 const EDIT_NOTE_COLOR = "EDIT_NOTE_COLOR";
 const SEARCH_NOTES = "SEARCH_NOTES";
+const EDIT_SELECTED_NOTE = "EDIT_SELECTED_NOTE";
 
 let notesArr;
 localStorage.getItem("notes") ? notesArr = { notes: JSON.parse(localStorage.getItem('notes')), filteredNotes: [], searchQuery: "" } : notesArr = defaultState;
@@ -73,16 +75,16 @@ export const noteReducer = (state = notesArr, action) => {
                 newState.notes = filteredNotes;
             }
             return { ...state, filteredNotes: newState.notes, searchQuery: text }
-        //   case ADD_MANY_CUSTOMERS: return {...state, customers: [...state.customers, ...action.payload]}
         case DELETE_NOTE: return { ...state, notes: state.notes.filter(note => note.id !== action.payload) }
+        case EDIT_SELECTED_NOTE: return { ...state, selectedNote: action.payload }
         default: return state;
     }
 };
 
 export const addNoteAction = (payload) => ({ type: ADD_NOTE, payload });
-// export const addManyCustomersAction = (payload) => ({type: ADD_MANY_CUSTOMERS, payload});
 export const deleteNoteAction = (payload) => ({ type: DELETE_NOTE, payload });
 export const editNoteAction = (payload) => ({ type: EDIT_NOTE, payload });
 export const editNoteColorAction = (payload) => ({ type: EDIT_NOTE_COLOR, payload });
 export const searchNoteAction = (payload) => ({ type: SEARCH_NOTES, payload });
+export const editSelectedNoteAction = (payload) => ({ type: EDIT_SELECTED_NOTE, payload });
 
