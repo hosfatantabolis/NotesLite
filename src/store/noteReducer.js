@@ -70,7 +70,7 @@ export const noteReducer = (state = notesArr, action) => {
         case SEARCH_NOTES:
             let newState = Object.assign({}, state);
             const { text } = action.payload;
-            const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text.toLowerCase()) || note.title.toLowerCase().includes(text.toLowerCase()) });
+            const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text.toLowerCase()) || note.title.toLowerCase().includes(text.toLowerCase()) || note.list.some((item) => { return item.text.toLowerCase().includes(text.toLowerCase()) }) });
             if (text) {
                 newState.notes = filteredNotes;
             }
