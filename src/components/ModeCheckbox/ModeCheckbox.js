@@ -8,6 +8,13 @@ import { THEME_DARK, THEME_LIGHT } from '../../utils/constants';
 
 function ModeCheckbox() {
     const theme = useSelector(state => state.theme.theme);
+    React.useEffect(() => {
+        localStorage.setItem(
+            'theme',
+            JSON.stringify(theme)
+        );
+    }, [theme]);
+
     const dispatch = useDispatch();
     function changeMode() {
         theme === THEME_DARK ? dispatch(switchThemeAction(THEME_LIGHT)) : dispatch(switchThemeAction(THEME_DARK))
@@ -19,7 +26,8 @@ function ModeCheckbox() {
                 <input
                     className='mode-checkbox__input'
                     type='checkbox'
-                    onClick={() => {
+                    checked={theme === THEME_DARK ? true : false}
+                    onChange={() => {
                         changeMode();
                     }}
                 />
