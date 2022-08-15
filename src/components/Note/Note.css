@@ -24,6 +24,8 @@
 
 .note:hover{
     background-image: url(../../images/buttons/edit.svg);
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
 }
 
