@@ -12,7 +12,8 @@ const NEW_NOTE = {
     text: "",
     color: DEFAULT_COLOR,
     type: "text",
-    list: []
+    list: [],
+    pinned: false
 };
 
 const NEW_MODE = "new"; //переменная для создания новой заметки

@@ -7,7 +7,8 @@ const defaultState = {
             color: "#FAD247",
             dateCreated: '1/1/1970 00:00:00',
             type: "text",
-            list: []
+            list: [],
+            pinned: false
         },
         {
             id: 2,
@@ -28,7 +29,8 @@ const defaultState = {
                 id: 3,
                 text: "Еще один элемент списка",
                 done: false
-            }]
+            }],
+            pinned: false
         }
     ],
     filteredNotes: [],
@@ -76,7 +78,8 @@ export const noteReducer = (state = notesArr, action) => {
             }
             return { ...state, filteredNotes: newState.notes, searchQuery: text }
         case DELETE_NOTE: return { ...state, notes: state.notes.filter(note => note.id !== action.payload) }
-        case EDIT_SELECTED_NOTE: return { ...state, selectedNote: action.payload }
+        case EDIT_SELECTED_NOTE:
+            return { ...state, selectedNote: action.payload }
         default: return state;
     }
 };
