@@ -14,4 +14,3 @@ https://notes.hosfatantabolis.ru/
 ## В планах
 
 Рефакторинг, Typescript
-
