@@ -1,6 +1,9 @@
-.notes__list{
+.notes__list_wrapper{
     max-width: 1140px;
-    margin: auto;
+    margin: 0 auto;
+    min-height: 100%;
+}
+.notes__list{
     display: grid;
     grid-template-columns: repeat(auto-fit, 364px);
     grid-row-gap: 30px;
@@ -9,6 +12,13 @@
     padding: 20px;
 }
 
+.notes__list_title{
+    text-align: left;
+}
+
+.notes__list_pinned{
+    border-bottom: 1px solid white;
+}
 @media screen and (max-width: 380px) {
     .notes__list{
         grid-template-columns: repeat(auto-fit, 310px);

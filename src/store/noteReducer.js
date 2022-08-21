@@ -33,7 +33,6 @@ const defaultState = {
             pinned: false
         }
     ],
-    filteredNotes: [],
     searchQuery: "",
     selectedNote: {}
 }
@@ -69,14 +68,7 @@ export const noteReducer = (state = notesArr, action) => {
                         : note
                 )
             }
-        case SEARCH_NOTES:
-            let newState = Object.assign({}, state);
-            const { text } = action.payload;
-            const filteredNotes = state.notes.filter((note) => { return note.text.toLowerCase().includes(text.toLowerCase()) || note.title.toLowerCase().includes(text.toLowerCase()) || note.list.some((item) => { return item.text.toLowerCase().includes(text.toLowerCase()) }) });
-            if (text) {
-                newState.notes = filteredNotes;
-            }
-            return { ...state, filteredNotes: newState.notes, searchQuery: text }
+        case SEARCH_NOTES: return { ...state, searchQuery: action.payload.text }
         case DELETE_NOTE: return { ...state, notes: state.notes.filter(note => note.id !== action.payload) }
         case EDIT_SELECTED_NOTE:
             return { ...state, selectedNote: action.payload }

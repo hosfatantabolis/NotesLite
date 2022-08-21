@@ -1,7 +1,7 @@
 import './Note.css';
 import { DEFAULT_COLOR } from '../../utils/constants';
 import { useDispatch } from 'react-redux';
-import { editNoteAction } from '../../store/noteReducer';
+import { editNoteAction, deleteNoteAction } from '../../store/noteReducer';
 
 
 export const Note = ({ note, handleNoteClick }) => {
@@ -20,6 +20,9 @@ export const Note = ({ note, handleNoteClick }) => {
             </div>
             <button className={`note__button ${!note.pinned ? 'note__button_pin' : "note__button_unpin"}`} onClick={() => {
                 dispatch(editNoteAction({ note: { ...note, pinned: !note.pinned } }));
+            }}></button>
+            <button className='note__button note__button_delete' onClick={() => {
+                dispatch(deleteNoteAction(note.id))
             }}></button>
             <span className="note__date-created">{note.dateCreated}</span>
         </div>

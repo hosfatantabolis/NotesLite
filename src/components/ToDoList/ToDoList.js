@@ -14,7 +14,7 @@ export const ToDoList = () => {
     const textInput = useRef();
 
     const handleAddItem = () => {
-        dispatch(editSelectedNoteAction({ ...selectedNote, list: [...selectedNote.list, value], done: false }));
+        dispatch(editSelectedNoteAction({ ...selectedNote, list: [...selectedNote.list, value] }));
         setValue({});
         setIsDisabled(true);
         textInput.current.value = '';
