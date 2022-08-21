@@ -10,7 +10,7 @@ export const Note = ({ note, handleNoteClick }) => {
     return (
         <div className="note" style={note.color ? { backgroundColor: note.color } : { backgroundColor: DEFAULT_COLOR }}>
             <div className='note__edit' onClick={() => { handleNoteClick(note) }}>
-                <h2 className="note__title">{note.title}</h2>
+                <h3 className="note__title">{note.title}</h3>
                 {note.type === "list" ? <ul className='note__list'>
                     {note.list.map(item => {
                         return <li className='note__list_item' key={item.id}>

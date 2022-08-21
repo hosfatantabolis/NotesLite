@@ -5,6 +5,7 @@
     max-height: 300px;
     padding: 20px;
     position: relative;
+    color: #000;
 }
 
 .note__title{

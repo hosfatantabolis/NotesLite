@@ -24,7 +24,10 @@ export const NotesList = ({ handleNoteClick }) => {
                     </div>
                 </div>)}
             {notes.length !== 0 && <div className="notes__section">
-                {searchQuery === "" ? <h2 className="notes__list_title">{notes.some(note => note.pinned) ? "Другие заметки" : "Заметки"}</h2> : <h2 className="notes__list_title">Результаты поиска:</h2>}
+                {searchQuery === "" ?
+                    <h2 className="notes__list_title">{(notes.some(note => note.pinned) && notes.some(note => !note.pinned)) &&
+                        "Другие заметки"}</h2>
+                    : <h2 className="notes__list_title">Результаты поиска:</h2>}
                 <div className="notes__list">
                     {(searchQuery === "") && notes.map(note => {
                         return !note.pinned && <Note note={note} key={note.id} handleNoteClick={handleNoteClick} />
