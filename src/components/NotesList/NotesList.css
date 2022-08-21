@@ -1,9 +1,13 @@
 .notes__list_wrapper{
-    max-width: 1140px;
-    margin: 0 auto;
+    width: 100%;
     min-height: 100%;
 }
+.notes__section{
+    
+}
 .notes__list{
+    max-width: 1140px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, 364px);
     grid-row-gap: 30px;
@@ -13,6 +17,8 @@
 }
 
 .notes__list_title{
+    max-width: 1140px;
+    margin: auto;
     text-align: left;
 }
 

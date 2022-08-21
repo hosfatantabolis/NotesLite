@@ -5,7 +5,6 @@ import "./NotesList.css";
 
 export const NotesList = ({ handleNoteClick }) => {
     const notes = useSelector(state => state.notes.notes);
-    // const filteredNotes = useSelector(state => state.notes.filteredNotes);
     const searchQuery = useSelector(state => state.notes.searchQuery);
     React.useEffect(() => {
         localStorage.setItem(
@@ -16,16 +15,16 @@ export const NotesList = ({ handleNoteClick }) => {
     return (
         <div className="notes__list_wrapper">
             {(searchQuery === "" && notes.length !== 0) &&
-                <div className="notes__section">
+                (notes.some(note => note.pinned)) && (<div className="notes__section">
                     <h2 className="notes__list_title">Закреплённые</h2>
                     <div className="notes__list notes__list_pinned">
                         {notes.map(note => {
-                            return note.pinned && <Note note={note} key={note.id} handleNoteClick={handleNoteClick} />
+                            return note.pinned && (<Note note={note} key={note.id} handleNoteClick={handleNoteClick} />)
                         })}
                     </div>
-                </div>}
+                </div>)}
             {notes.length !== 0 && <div className="notes__section">
-                <h2 className="notes__list_title">Другие заметки</h2>
+                {searchQuery === "" ? <h2 className="notes__list_title">{notes.some(note => note.pinned) ? "Другие заметки" : "Заметки"}</h2> : <h2 className="notes__list_title">Результаты поиска:</h2>}
                 <div className="notes__list">
                     {(searchQuery === "") && notes.map(note => {
                         return !note.pinned && <Note note={note} key={note.id} handleNoteClick={handleNoteClick} />

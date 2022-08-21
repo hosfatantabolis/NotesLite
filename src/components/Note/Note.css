@@ -5,7 +5,6 @@
     max-height: 300px;
     padding: 20px;
     position: relative;
-    /* justify-content: center; */
 }
 
 .note__title{
@@ -21,10 +20,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-/* .note:hover{
-    
-} */
 
 .note__edit:hover{
     background-image: url(../../images/buttons/edit.svg);
